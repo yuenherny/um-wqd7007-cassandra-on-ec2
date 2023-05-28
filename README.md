@@ -35,9 +35,8 @@ test> use hotel
 ```
 Exit `mongsh` to import CSV data into MongoDB.
 ```
-$ mongoimport --db hotel --collection listings --type csv headerline --file 7007_data/merged_listings.csv
-$ mongoimport --db hotel --collection reviews --type csv --
-headerline --file 7007_data/merged_reviews.csv
+$ mongoimport --db hotel --collection listings --type csv --headerline --file 7007_data/merged_listings.csv
+$ mongoimport --db hotel --collection reviews --type csv --headerline --file 7007_data/merged_reviews.csv
 ```
 Launch `mongosh` again and show created tables. You should see `listings` and `reviews` listed.
 ```
