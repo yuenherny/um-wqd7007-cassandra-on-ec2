@@ -33,10 +33,25 @@ Create a new database named `hotel`.
 ```
 test> use hotel
 ```
-Exit `mongsh` to import CSV data into MongoDB.
+Exit `mongsh` to import CSV data into MongoDB. Remember to time these commands as it is important to know about dataset import time too. Just drop the `time` utility if execution time not needed. Importing `listings.csv`:
 ```
-$ mongoimport --db hotel --collection listings --type csv --headerline --file 7007_data/merged_listings.csv
-$ mongoimport --db hotel --collection reviews --type csv --headerline --file 7007_data/merged_reviews.csv
+$ time mongoimport --db hotel --collection listings --type csv --headerline --file 7007_data/merged_listings.csv
+```
+in which the following results were obtained:
+```
+real	1m26.883s
+user	1m36.463s
+sys	    0m25.200s
+```
+Importing `reviews.csv`:
+```
+$ time mongoimport --db hotel --collection reviews --type csv --headerline --file 7007_data/merged_reviews.csv
+```
+in which the following results were obtained:
+```
+real	6m29.574s
+user	4m35.926s
+sys	    1m5.663s
 ```
 Launch `mongosh` again and show created tables. You should see `listings` and `reviews` listed.
 ```
