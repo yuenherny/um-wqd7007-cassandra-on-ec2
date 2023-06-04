@@ -49,9 +49,9 @@ $ time mongoimport --db hotel --collection reviews --type csv --headerline --fil
 ```
 in which the following results were obtained:
 ```
-real	6m29.574s
-user	4m35.926s
-sys	    1m5.663s
+real	18m59.104s
+user	14m18.680s
+sys	    3m0.393s
 ```
 Launch `mongosh` again and show created tables. You should see `listings` and `reviews` listed.
 ```
