@@ -68,3 +68,75 @@ List the first 2 rows (or documents).
 ```
 hotel> db.listings.find().limit(2)
 ```
+
+## Queries related to hospitality: Reviews dataset
+Retrieve "top 10 listings with most reviews":
+```
+db.reviews.aggregate([
+  {
+    $group: {
+      _id: "$listing_id",
+      count: { $sum: 1 }
+    }
+  },
+  {
+    $sort: { count: -1 }
+  },
+  {
+    $limit: 10
+  }
+])
+```
+Retrieve "top 10 listings with most reviews and were recently reviewed":
+```
+db.reviews.aggregate([
+  {
+    $group: {
+      _id: "$listing_id",
+      count: { $sum: 1 },
+      lastReviewDate: { $max: "$date" }
+    }
+  },
+  {
+    $sort: { count: -1, lastReviewDate: -1 }
+  },
+  {
+    $limit: 10
+  }
+])
+```
+Retrieve "top 10 reviewers with most reviews":
+```
+db.reviews.aggregate([
+  {
+    $group: {
+      _id: "$reviewer_id",
+      count: { $sum: 1 }
+    }
+  },
+  {
+    $sort: { count: -1 }
+  },
+  {
+    $limit: 10
+  }
+])
+```
+Retrieve "top 10 reviewers with most reviews and recently commented":
+```
+db.reviews.aggregate([
+  {
+    $group: {
+      _id: "$reviewer_id",
+      count: { $sum: 1 },
+      lastCommentDate: { $max: "$date" }
+    }
+  },
+  {
+    $sort: { count: -1, lastCommentDate: -1 }
+  },
+  {
+    $limit: 10
+  }
+])
+```
